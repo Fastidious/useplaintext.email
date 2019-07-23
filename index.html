@@ -9,6 +9,7 @@
         max-width: 800px;
         margin: 0 auto;
         font: 11pt monospace;
+        padding: 0 1rem;
       }
 
       ul li {
@@ -21,11 +22,22 @@
 
       pre {
         padding-left: 1rem;
+        max-width: 100%;
+        overflow-x: auto;
       }
 
       .breakdown {
         display: flex;
         justify-content: space-between;
+      }
+
+      @media(max-width: 720px) {
+        .breakdown {
+          display: block;
+        }
+        .breakdown span {
+          display: block;
+        }
       }
 
       .breakdown span {
@@ -49,9 +61,6 @@
     <h2>Table of Contents</h2>
     <ol>
       <li>
-        <a href="#why-plaintext">Why is plaintext better than HTML?</a>
-      </li>
-      <li>
         <a href="#recommended-clients">
           Recommended email clients for plaintext users
         </a>
@@ -65,6 +74,9 @@
         <a href="#etiquette">Etiquette recommendations for plaintext emails</a>
       </li>
       <li>
+        <a href="#why-plaintext">Why is plaintext better than HTML?</a>
+      </li>
+      <li>
         <a href="#implementation-recommendations">
           Recommendations for software which sends emails
         </a>
@@ -73,86 +85,6 @@
         <a href="#contribute">How to improve these recommendations</a>
       </li>
     </ol>
-    <h2 id="why-plaintext">Why is plaintext better than HTML?</h2>
-    <p>
-      HTML emails are mainly used for marketing - that is, emails you probably
-      don't want to see in the first place. The few advantages they offer for
-      end-users, such as links, inline images, and bold or italic text, aren't
-      worth the trade-off.
-    </p>
-    <h3>HTML as a vector for phishing</h3>
-    <p>
-      HTML emails allow you to make links which hide the URL behind some
-      user-friendly text. However, this is an extremely common vector for
-      phishing attacks, where a malicious sender makes a misleading link which
-      takes you to a different website than you expect. Often these websites are
-      modeled after the login page of a service you use, and will trick you into
-      entering your account password. In plaintext emails, the URL is always
-      visible, and you can more easily make an informed choice to click it.
-    </p>
-    <h3>Privacy invasion and tracking</h3>
-    <p>
-      Virtually all HTML emails sent by marketers include identifiers in links
-      and inline images which are designed to extract information about you and
-      send it back to the sender. Examine the URLs closely - the strange numbers
-      and letters are unique to you and used to identify you. This information
-      is used to hack your brain, attempting to find advertisements which are
-      more likely to influence your buying habits. HTML emails are good for
-      marketers and bad for you.
-    </p>
-    <h3>Mail client vulnerabilities</h3>
-    <p>
-      HTML is an extremely large and complicated set of specifications designed
-      without emails in mind. It's designed for browsing the world wide web, on
-      which a huge variety of documents, applications, and more are available.
-      Implementing even a reasonable subset of these standards represents
-      hundreds of thousands of hours of work, or even millions. A large subset
-      (perhaps the majority) of these features are not desirable for emails, and
-      if included can be leveraged to leak information about you, your contacts,
-      your calendar, other emails in your inbox, and so on. However, because of
-      the herculean effort necessary to implement an HTML renderer, no one has
-      built one specialized for emails which is guaranteed to be safe. Instead,
-      general purpose web browsers, with many of their features disabled, are
-      employed in most email clients. This is the number one source of
-      vulnerabilities in email clients which result in information disclosure
-      and even the execution of arbitrary malicious code.
-    </p>
-    <h3>HTML emails are less accessible</h3>
-    <p>
-      Browsing the web is a big challenge for users who require a screenreader
-      or other assistive tools to use their computer. The same problems apply to
-      email, only more so - making an accessible HTML email is even more
-      difficult than making an accessible website due to the limitations imposed
-      on HTML emails by most mail clients (which they have no choice but to
-      impose - for the security reasons stated above). Plain text emails are
-      a breeze in comparison for screenreaders to recite, especially for users
-      with specialized email clients designed for this purpose. How do you speak
-      bold text aloud? How about your inline image?
-    </p>
-    <h3>Some clients can't display HTML emails at all</h3>
-    <p>
-      Some email clients don't support HTML emails at all. Many email clients
-      are designed to run in text-only environments, like a terminal emulator,
-      where they're useful to people who spend a lot of time working in these
-      environments. In a text-only interface it's not possible to render an HTML
-      email, and instead the reader will just see a mess of raw HTML text. A lot
-      of people simply send HTML emails directly to spam for this reason.
-    </p>
-    <h3>Rich text isn't that great, anyway</h3>
-    <p>
-      Rich text features desirable for end users include things like inline
-      images, bold or italicized text, and so on. However, the tradeoff isn't
-      worth it. Images can simply be attached to your email, and you can employ
-      things like *asterisks*, /slashes/, _underscores_, or UPPERCASE for
-      emphasis. You can still communicate your point effectively without
-      bringing along all of the bad things HTML emails come with.
-    </p>
-    <hr />
-    <p>
-      In short, HTML emails are a security nightmare, are mostly used for
-      advertising to you and tracking you, are less accessible for many users,
-      and don't offer anything especially great for it.
-    </p>
     <img
       src="https://sr.ht/ZWUH.png"
       alt="Plaintext certified stamp"
@@ -465,6 +397,86 @@
       message you're replying to unless you want to. If your client doesn't do
       this for you, it can easily be the most frustrating part of being a good
       email netizen, but it's very much appreciated by recipients.
+    </p>
+    <h2 id="why-plaintext">Why is plaintext better than HTML?</h2>
+    <p>
+      HTML emails are mainly used for marketing - that is, emails you probably
+      don't want to see in the first place. The few advantages they offer for
+      end-users, such as links, inline images, and bold or italic text, aren't
+      worth the trade-off.
+    </p>
+    <h3>HTML as a vector for phishing</h3>
+    <p>
+      HTML emails allow you to make links which hide the URL behind some
+      user-friendly text. However, this is an extremely common vector for
+      phishing attacks, where a malicious sender makes a misleading link which
+      takes you to a different website than you expect. Often these websites are
+      modeled after the login page of a service you use, and will trick you into
+      entering your account password. In plaintext emails, the URL is always
+      visible, and you can more easily make an informed choice to click it.
+    </p>
+    <h3>Privacy invasion and tracking</h3>
+    <p>
+      Virtually all HTML emails sent by marketers include identifiers in links
+      and inline images which are designed to extract information about you and
+      send it back to the sender. Examine the URLs closely - the strange numbers
+      and letters are unique to you and used to identify you. This information
+      is used to hack your brain, attempting to find advertisements which are
+      more likely to influence your buying habits. HTML emails are good for
+      marketers and bad for you.
+    </p>
+    <h3>Mail client vulnerabilities</h3>
+    <p>
+      HTML is an extremely large and complicated set of specifications designed
+      without emails in mind. It's designed for browsing the world wide web, on
+      which a huge variety of documents, applications, and more are available.
+      Implementing even a reasonable subset of these standards represents
+      hundreds of thousands of hours of work, or even millions. A large subset
+      (perhaps the majority) of these features are not desirable for emails, and
+      if included can be leveraged to leak information about you, your contacts,
+      your calendar, other emails in your inbox, and so on. However, because of
+      the herculean effort necessary to implement an HTML renderer, no one has
+      built one specialized for emails which is guaranteed to be safe. Instead,
+      general purpose web browsers, with many of their features disabled, are
+      employed in most email clients. This is the number one source of
+      vulnerabilities in email clients which result in information disclosure
+      and even the execution of arbitrary malicious code.
+    </p>
+    <h3>HTML emails are less accessible</h3>
+    <p>
+      Browsing the web is a big challenge for users who require a screenreader
+      or other assistive tools to use their computer. The same problems apply to
+      email, only more so - making an accessible HTML email is even more
+      difficult than making an accessible website due to the limitations imposed
+      on HTML emails by most mail clients (which they have no choice but to
+      impose - for the security reasons stated above). Plain text emails are
+      a breeze in comparison for screenreaders to recite, especially for users
+      with specialized email clients designed for this purpose. How do you speak
+      bold text aloud? How about your inline image?
+    </p>
+    <h3>Some clients can't display HTML emails at all</h3>
+    <p>
+      Some email clients don't support HTML emails at all. Many email clients
+      are designed to run in text-only environments, like a terminal emulator,
+      where they're useful to people who spend a lot of time working in these
+      environments. In a text-only interface it's not possible to render an HTML
+      email, and instead the reader will just see a mess of raw HTML text. A lot
+      of people simply send HTML emails directly to spam for this reason.
+    </p>
+    <h3>Rich text isn't that great, anyway</h3>
+    <p>
+      Rich text features desirable for end users include things like inline
+      images, bold or italicized text, and so on. However, the tradeoff isn't
+      worth it. Images can simply be attached to your email, and you can employ
+      things like *asterisks*, /slashes/, _underscores_, or UPPERCASE for
+      emphasis. You can still communicate your point effectively without
+      bringing along all of the bad things HTML emails come with.
+    </p>
+    <hr />
+    <p>
+      In short, HTML emails are a security nightmare, are mostly used for
+      advertising to you and tracking you, are less accessible for many users,
+      and don't offer anything especially great for it.
     </p>
     <h2 id="implementation-recommendations">
       Recommendations for software which sends emails
